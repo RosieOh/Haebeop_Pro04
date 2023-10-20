@@ -11,6 +11,7 @@ import kr.ed.haebeop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -191,7 +192,7 @@ public class Admincontroller {
 
     //관리자페이지 수강 관리
     @RequestMapping(value = "enrollList", method = RequestMethod.GET)
-    public String admonEnroll(HttpServletRequest request, Model model) {
+    public String adminEnroll(HttpServletRequest request, Model model) {
         String type = request.getParameter("type");
         String keyword = request.getParameter("keyword");
         int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
@@ -218,9 +219,51 @@ public class Admincontroller {
 
     //수강생 삭제
     @RequestMapping(value = "enrollDelete", method = RequestMethod.GET)
-    public String enrollDelete(@RequestParam int eno) throws Exception {
+    @Transactional
+    public String enrollDelete(@RequestParam int eno, @RequestParam int cno) throws Exception {
         courseService.enrollDelete(eno);
-        return "redirect:/admin/EnrollList";
+        courseService.rollbackStudentNum(cno);
+        return "redirect:/admin/enrollList";
+    }
+
+    //관리자페이지 철회 관리
+    @RequestMapping(value = "cancelList", method = RequestMethod.GET)
+    public String adminCancel(HttpServletRequest request, Model model) {
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+        int total = courseService.countCancel(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        List<Enroll> cancelList = courseService.cancelList(page);
+        model.addAttribute("cancelList", cancelList);
+
+        return "/admin/cancelList";
+    }
+
+    //철회 신청 삭제(철회 수락)
+    @RequestMapping(value = "cancelDelete", method = RequestMethod.GET)
+    @Transactional
+    public String cancelDelete(@RequestParam int eno, @RequestParam int cno, @RequestParam String id, @RequestParam int enroll_price, @RequestParam int pt) throws Exception {
+        courseService.enrollDelete(eno);
+        courseService.rollbackStudentNum(cno);
+        User user = new User();
+        user.setId(id);
+        user.setPt(pt+enroll_price);
+        courseService.updateUserPt(user);
+        return "redirect:/admin/cancelList";
     }
 
     @GetMapping("courseList")

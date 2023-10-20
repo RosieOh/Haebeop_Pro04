@@ -12,10 +12,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <title>${course.course_name } 수강신청</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
         .content ul {
             list-style-type: none;
@@ -259,7 +259,7 @@
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content has-text-centered">
-                            <h1 class="title article-title">${course.course_name } 수강신청</h1>
+                            <span class="title article-title">${course.course_name } 수강신청</span>
                         </div>
                     </div>
                     <hr>
@@ -564,13 +564,13 @@
                         <div class="total">
                             <p>
                                 <i>강의금액</i>
-                                <b id="sum_price">${course.price }원</b>
+                                <b id="sum_price"><fmt:formatNumber value="${course.price }" pattern="#,###" />원</b>
                             </p>
                             <p>
                                 <i>교재금액</i>
                                 <b id="book_price">
                                     <c:if test="${book == 1}">
-                                        ${course.book_price }원
+                                        <fmt:formatNumber value="${course.book_price }" pattern="#,###" />원
                                     </c:if>
                                     <c:if test="${book == 0}">
                                         0원
@@ -581,15 +581,15 @@
                                 <i>할인금액</i>
                                 <b id="discount_price" class="red">0원</b>
                             </p>-->
-                            <h4><i style="margin-top: 8px; margin-right: 16px;">총 결제금액</i><span class="pointColor price">
+                            <p style="border-top: 1px solid #ddd;"><i style="margin-top: 8px; margin-right: 16px;">총 결제금액</i><span class="pointColor price" style="float: right; ">
                                 <strong id="total_price" class="eng">
                                     <c:if test="${book == 1}">
-                                        ${course.book_price +course.price }원
+                                        <fmt:formatNumber value="${course.book_price +course.price }" pattern="#,###" />원
                                     </c:if>
                                     <c:if test="${book == 0}">
-                                        ${course.price }원
+                                        <fmt:formatNumber value="${course.price }" pattern="#,###" />원
                                     </c:if>
-                                </strong></span></h4>
+                                </strong></span></p>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" id="ck_item1" name="ck_item" class="form-check-input">
