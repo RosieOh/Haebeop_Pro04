@@ -7,12 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글 쓰기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../include/head.jsp" />
     <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
     <script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,38 +25,12 @@
         font-family: 'Nanum Gothic Coding', monospace;
     } */
 
-    .h2{
-        font-family: 'Nanum Gothic Coding', monospace;
+    .table th {
+        white-space: nowrap;
+        vertical-align: middle;
     }
-
-    .button {
-        text-decoration: none;
-        border-radius: 20px;
-        margin: 15px;
-        padding: 10px;
-        float: right;
-        background-color: #1D7151;
-        border-color: #1D7151;
-        color: #ffffff;
-    }
-    .button2 {
-        text-decoration: none;
-        border-radius: 20px;
-        margin: 15px;
-        padding: 10px;
-        float: right;
-        background-color: #FFA500;
-        border-color: #FFA500;
-        color: #ffffff;
-    }
-
-    .column1 {
-        text-align: center;
-        display: block;
-        flex-basis: 0;
-        flex-grow: 1;
-        flex-shrink: 1;
-        padding: 0.75rem;
+    .table input[type="file"] {
+        width: 28rem;
     }
 </style>
 
@@ -72,65 +43,68 @@
         <li><a href="${path1}/video/list.do">시범강의</a></li>
         <li><a href="${path1}/video/insert.do">영상 업로드</a></li>
     </ul>
-    <p class="title has-text-centered mt-1 mb-2">시범 강의 업로드</p>
+    <p class="title has-text-centered mt-1 mb-2">시범강의</p>
 </nav>
-<div class="container is-fullhd">
-    <div class="content" id="contents">
-        <div class="row column1 text-center">
-            <%--<h2 class="h2">시범 강의 올리기</h2>
-            <hr>--%>
-            <div class="container">
-                <form action="${path1 }/video/insert.do" method="post" enctype="multipart/form-data">
-                    <table id="table1">
-                        <tbody>
-                        <tr>
-                            <th style="background-color:#dcdcdc">제목</th>
-                            <td>
-                                <input type="text" name="title" id="title" class="input" placeholder="제목 입력" maxlength="98" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style="background-color:#dcdcdc">List <br> 이미지</th>
-                            <td>
-                                <input type="file" name="img" id="img" class="input" placeholder="이미지" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style="background-color:#dcdcdc">영상</th>
-                            <td>
-                                <input type="file" name="videofile" id="videofile" class="input" accept="video/mp4,video/mkv, video/x-m4v,video/*" placeholder="영상" required>
-                                <video id="video"></video>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style="background-color:#dcdcdc">내용</th>
-                            <td>
-                                <textarea name="content" id="content" class="textarea" placeholder="내용 입력" rows="8" cols="100" maxlength="1400" required></textarea>
-                                <script>
-                                    CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/video/imageUpload.do'});
-                                </script>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th style="background-color:#dcdcdc">선생님</th>
-                            <td>
-                                <input type="text" name="teacher" id="teacher" class="input" placeholder="선생님 입력" maxlength="98" required>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td colspan="2">
-                                <input type="submit" class="button2" value="등록" >
-                                <a class="button" href="${path1 }/video/list.do">목록으로</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <form action="${path1 }/video/insert.do" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="site" value="${site}" />
+                <table class="table is-centered is-fullwidth">
+                    <tbody>
+                    <tr class="border-top">
+                        <th class="has-text-centered">제목</th>
+                        <td>
+                            <input type="text" name="title" id="title" class="input" placeholder="제목" maxlength="98" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="has-text-centered">이미지</th>
+                        <td>
+                            <input type="file" name="img" id="img" class="input" placeholder="이미지" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="has-text-centered">영상</th>
+                        <td>
+                            <input type="file" name="videofile" id="videofile" class="input" accept="video/mp4,video/mkv, video/x-m4v,video/*" placeholder="영상" required>
+                            <%--<video id="video"></video>--%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="has-text-centered">내용</th>
+                        <td>
+                            <textarea name="content" id="content" class="textarea" placeholder="내용 입력" rows="8" cols="100" maxlength="1400" required></textarea>
+                            <script>
+                                CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/video/imageUpload.do'});
+                            </script>
+                        </td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <th class="has-text-centered">선생님</th>
+                        <td>
+                            <input type="text" name="teacher" id="teacher" class="input" placeholder="선생님" maxlength="98" style="width: 13.6rem;" required>
+                        </td>
+                    </tr>
+                    <%--<tr>
+                        <td colspan="2">
+                            <input type="submit" class="button2" value="등록" >
+                            <a class="button" href="${path1 }/video/list.do">목록으로</a>
+                        </td>
+                    </tr>--%>
+                    </tbody>
+                </table>
+                <div class="has-text-centered">
+                    <button type="submit" class="button is-link mb-5 p-5" style="border-radius: 1.5rem;">등록하기</button>
+                </div>
+            </form>
         </div>
+        <div class="column is-1"></div>
     </div>
 </div>
+
+
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </body>

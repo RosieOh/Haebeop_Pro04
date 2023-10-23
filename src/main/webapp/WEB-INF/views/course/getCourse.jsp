@@ -11,13 +11,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <title>${course.course_name }</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../include/head.jsp" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <style>
         .content ul {
             list-style-type: none;
@@ -250,10 +248,9 @@
 <nav class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9" aria-label="breadcrumbs">
     <ul class="mr-5">
         <li><a href="${path1}"><i class="xi-home is-size-3"></i></a></li>
-        <li><a href="${path1}/course/list.do">수강신청</a></li>
+        <li><a href="${path1}/course/list.do">강의수강</a></li>
         <li class="is-active"><a href="${path1 }/course/getCourse?cno=${course.cno }" aria-current="page">수강신청</a></li>
     </ul>
-
     <p class="title has-text-centered mt-1 mb-2">수강신청</p>
 </nav>
 <div class="container is-fullhd" style="min-height: 1000px;">

@@ -7,9 +7,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스마트해법</title>
     <jsp:include page="./include/head.jsp" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -47,8 +44,8 @@
 
         .course-tit a { font-size: 1.3rem; }
         .course-tit a:hover { text-decoration: underline; color: initial }
-        .blog-item img { transition: transform 0.2s; }
-        .blog-item img:hover { transform: scale(1.03); }
+        /*.blog-item img { transition: transform 0.4s; }*/
+        .blog-item img:hover { box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) }
     </style>
 </head>
 <body>
@@ -155,8 +152,8 @@
                     <p class="title">블렌디드러닝(Blended Learning)</p>
                     <span class="has-text-grey-dark">
                         능동적인 학습 습관 형성과 실력 극대화를 위해<br>
-                        스마트해법에서는<br>
-                        블렌디드 러닝이라는 새로운 패러다임을 만들어가고 있습니다.<br><br>
+                        스마트해법에서는 블렌디드 러닝이라는<br>
+                        새로운 패러다임을 만들어가고 있습니다.<br><br>
                         오프라인에서의 밀도 높은 1:1 밀착 코칭에서부터<br>
                         디지털 디바이스를 이용한 최정상 강사의 동영상 강의,<br>
                         이해를 돕기 위한 다각적 학습 프로그램,<br>

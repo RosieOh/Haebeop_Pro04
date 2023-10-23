@@ -6,11 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자료실</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../include/head.jsp" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -33,10 +31,10 @@
         /*    font-weight: 200;*/
         /*}*/
 
-        .container {
+/*        .container {
             max-width: 1280px;
             border-radius: 5px;
-            text-align: center; /* 컨테이너 내부의 요소들을 가운데 정렬 */
+            text-align: center; !* 컨테이너 내부의 요소들을 가운데 정렬 *!
         }
 
         .box_wrap {
@@ -48,7 +46,7 @@
         }
 
         .box_wrap {
-            border-top: #000 2px solid;
+            border-top: 1px solid #ddd;;
         }
 
         *, *:before, *:after {
@@ -152,18 +150,28 @@
             display: table-header-group;
             vertical-align: middle;
             border-color: inherit;
+        }*/
+        .table {
+            font-size: 1.25rem;
+            border-top: 2px solid #dee2e6;
+            border-bottom: 1px solid #dbdbdb;;
         }
-        .search_wrap {
-            align-items: center;
-            background: #f8f8f8;
-            padding-top: 56px;
-            padding-left: 60px;
-            text-align: center;
-            margin: 20px 0 20px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+        .table th {
+            white-space: nowrap;
+            background: #eff1f8;
         }
+        .table td {
+            white-space: nowrap;
+        }
+        .table td, .table th {
+            padding: 0.75em 0.75em;
+        }
+
+        .item1 { width:6%; }
+        .item2 { width:64%; }
+        .item3 { width:10%; }
+        .item4 { width:10%; }
+        .item5 { width:10%; }
     </style>
 </head>
 <body>
@@ -180,8 +188,9 @@
     </ul>
     <p class="title has-text-centered mt-1 mb-2">자료실</p>
 </nav>
+
 <div class="container">
-    <div class="columns is-multiline mt-1">
+    <div class="columns is-multiline mt-1 mx-5">
         <div class="column is-4">
             <form action="${path1 }/file/list.do" method="get" class="field has-addons">
                 <p class="control">
@@ -200,44 +209,48 @@
                 </p>
             </form>
         </div>
-            <div class="column is-2 is-offset-6 has-text-centered">
-                <c:if test= "${sid.equals('admin')}">
-                    <a class="button is-link is-medium" href="${path1 }/file/fileupload1.do">등록하기</a>
-                </c:if>
-            </div>
+        <div class="column is-2 is-offset-6 has-text-right">
+            <c:if test= "${sid.equals('admin')}">
+                <a class="button is-link is-medium" href="${path1 }/file/fileupload1.do">등록하기</a>
+            </c:if>
         </div>
-        <br>
-        <div class="box_wrap">
-            <table class="notice-list" id="tb1">
+
+        <div class="column is-12">
+            <table class="table is-centered is-fullwidth">
                 <thead>
                 <tr>
-                    <th class="item1">번호</th>
-                    <th class="item2">제목</th>
-                    <th class="item3">등록일</th>
+                    <th class="item1">No</th>
+                    <th class="item2 has-text-centered">제목</th>
+                    <th class="item3 has-text-centered">등록일</th>
+                    <th class="item4 has-text-centered">작성자</th>
+                    <th class="item5 has-text-centered">조회수</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="board" items="${fileboardList}" varStatus="status">
                     <tr>
-                        <td class="item1">${board.fileBoard.postNo}</td>
-                        <td class="item2">
+                        <td>${total - ((curPage - 1) * page.postCount + status.index) }</td>
+                        <td>
                             <c:if test="${empty sid }">
-                                <p class="al">${board.fileBoard.title}</p>
+                                ${board.fileBoard.title}
                             </c:if>
                             <c:if test="${!empty sid || sid.equals('admin') }">
-                                <a href="${path1}/file/getFileboard.do?postNo=${board.fileBoard.postNo}" class="al">${board.fileBoard.title}</a>
+                                <a href="${path1}/file/getFileboard.do?postNo=${board.fileBoard.postNo}">${board.fileBoard.title}</a>
                             </c:if>
                         </td>
-                        <td class="item3">${board.fileBoard.regdate}</td>
+                        <fmt:parseDate value="${board.fileBoard.regdate }" pattern="yyyy-MM-dd" var="formattedDate" />
+                        <td class="has-text-centered"><fmt:formatDate value="${formattedDate }" pattern="yyyy.MM.dd"/></td>
+                        <td class="has-text-centered">관리자</td>
+                        <td class="has-text-centered">${board.fileBoard.visited }</td>
                     </tr>
                 </c:forEach>
-
                 </tbody>
             </table>
         </div>
     </div>
-<br>
-<br>
+    <br>
+</div>
+
 <nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
     <c:if test="${curPage > page.pageCount }">
         <a href="${path1 }/file/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>

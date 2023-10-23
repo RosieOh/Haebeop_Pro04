@@ -7,11 +7,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>시범 강의</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../include/head.jsp" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -132,7 +130,7 @@
         .video-list {
             list-style: none;
             margin-top: 40px;
-            border-top: 2px solid #999;
+            border-top: 1px solid #ddd;;
         }
 
         .video-list li .exp > a {
@@ -195,7 +193,7 @@
     <p class="title has-text-centered mt-1 mb-2">시범강의</p>
 </nav>
 
-<div class="container-fluid">
+<div class="container">
     <h2 class="title"></h2>
     <div class="container" id="container">
         <div class="columns is-multiline mt-1">
@@ -217,9 +215,9 @@
                     </p>
                 </form>
             </div>
-            <div class="column is-2 is-offset-6 has-text-centered">
+            <div class="column is-2 is-offset-6 has-text-right">
                 <c:if test= "${sid.equals('admin')}">
-                    <a class="button is-link is-medium" href="${path1 }/video/insert.do">영상 올리기</a>
+                    <a class="button is-link is-medium" href="${path1 }/video/insert.do">영상 업로드</a>
                 </c:if>
             </div>
         </div>
