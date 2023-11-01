@@ -100,7 +100,7 @@
         }
         .card:hover {
             transform: initial;
-            border-top: 0;
+            /*border-top: 0;*/
         }
         .price_h4 {
             position: relative;
@@ -240,6 +240,12 @@
             border-radius: 20px;
             background-color: #f1f4f9;
         }
+        .textbook-price {
+            font-size: 1rem;
+            color: #008CD6;
+            margin-left: 0.1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -278,6 +284,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="book-info mt-6 ml-2">
+                <span class="has-text-black is-size-5 has-text-weight-semibold">교재 정보</span>
+                <div class="columns mt-4 is-vcentered">
+                    <div class="column is-3">
+                        <img src="${path1 }/resources/upload/${course.imgsrc2 }" alt="교재사진" style="border-radius: 20px; width:300px; max-height: 200px;" >
+                    </div>
+                    <div class="column is-9 ml-1">
+                        <p class="has-text-weight-semibold has-text-black is-size-5">${course.book_name}</p>
+                        <br>
+                        <p class="textbook-price"><fmt:formatNumber value="${course.book_price }" pattern="#,###" />원</p>
+                    </div>
+                </div>
+
+            </div>
+
 
         </div>
         <div class="column is-4">
@@ -393,7 +415,6 @@
             $("#apply").on("click", function() { fn3() });
     });
  */
-
     $(document).ready(function(){
         $("#apply").click(function(){
             // 회원만 수강 신청 가능
@@ -401,7 +422,10 @@
                 alert("수강신청은 로그인 후 가능합니다.");
                 window.location.href = '${path1}/user/loginForm';
             } else if (${sid ne null && isEnroll eq false }){
-                if (${course.curr_num == course.total_num }) {
+                if (new Date('${course.end_date}') < new Date()) {
+                    alert("이미 종강한 강의입니다.");
+                    window.location.href = '${path1}/course/list.do';
+                } else if (${course.curr_num == course.total_num }) {
                     alert("모집이 마감된 강의입니다.");
                     window.location.href = '${path1}/course/list.do';
                 } else {

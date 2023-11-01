@@ -26,7 +26,6 @@
         *{
             font-family: "Montserrat", sans-serif;
         }
-        .
         .card-header { font-size: 1.2em; font-family: "Nanum Gothic Coding"; font-weight: bolder; color:#00A2FF; margin-top:20px; margin-bottom: 20px; }
         .table td, .table th { font-size: 0.8em; }
         .hero.welcome .title, .hero.welcome .subtitle { font-family: "Nanum Gothic Coding";  }
@@ -75,7 +74,7 @@
             <div class="columns">
                 <div class="column is-6">
                     <header class="card-header">
-                        「 수강신청 관리 」
+                        「 수강철회 관리 」
                     </header>
                     <form action="${path1 }/admin/cancelList" method="get" class="field has-addons has-addons-right">
                         <p class="control">
@@ -103,7 +102,8 @@
                                 <th>강의</th>
                                 <th>수강생</th>
                                 <th>수강 완료</th>
-                                <th>구매가</th>
+                                <th>사용 포인트</th>
+                                <th>실구매가</th>
                                 <th>수강철회</th>
                             </tr>
                             </thead>
@@ -117,7 +117,8 @@
                                     <c:if test="${cancel.complete == true }"> ⭕ </c:if>
                                     <c:if test="${cancel.complete == false }"> ❌ </c:if>
                                 </td>
-                                <td class="item6">${cancel.enroll_price }</td>
+                                <td class="item5">${cancel.enroll_price }</td>
+                                <td class="item6">${cancel.enroll_cash }</td>
                                 <td class="item7"><a href="${path1 }/admin/cancelDelete?eno=${cancel.eno }&cno=${cancel.cno }&id=${cancel.id }&enroll_price=${cancel.enroll_price }&pt=${cancel.pt }"><button class="button is-danger is-rounded" style="scale: 70%;">수락</button></a></td>
                             </tr>
                             </c:forEach>

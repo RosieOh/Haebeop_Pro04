@@ -22,9 +22,34 @@
         ]]>
     </select>
 
+    <select id="getCoursesASC" resultType="kr.ed.haebeop.domain.Course">
+        select * from course order by price LIMIT #{postStart}, #{postCount}
+    </select>
+
+    <select id="getCoursesDESC" resultType="kr.ed.haebeop.domain.Course">
+        select * from course order by price desc LIMIT #{postStart}, #{postCount}
+    </select>
+
     <select id="courseList" resultType="kr.ed.haebeop.domain.Course">
         select * from course
     </select>
+
+    <select id="getUnfinishedCourses" resultType="kr.ed.haebeop.domain.Course">
+        SELECT * FROM course WHERE end_date >= CURDATE() order by cno desc LIMIT #{postStart}, #{postCount}
+    </select>
+
+    <select id="unfinishedCourses" resultType="kr.ed.haebeop.domain.Course">
+        SELECT * FROM course WHERE end_date >= CURDATE() order by cno desc
+    </select>
+
+    <select id="getNotFullCourses" resultType="kr.ed.haebeop.domain.Course">
+        SELECT * FROM course WHERE total_num > curr_num order by cno desc LIMIT #{postStart}, #{postCount}
+    </select>
+
+    <select id="notFullCourses" resultType="kr.ed.haebeop.domain.Course">
+        SELECT * FROM course WHERE total_num > curr_num order by cno desc
+    </select>
+
 
     <!-- 신규 강의 3개 -->
     <select id="newCourses" resultType="kr.ed.haebeop.domain.Course">
@@ -66,7 +91,7 @@
     </select>
 
     <insert id="insertEnroll">
-        INSERT INTO enroll VALUES(DEFAULT, #{cno }, #{id }, DEFAULT, DEFAULT, #{enroll_price },#{book_name }, DEFAULT)
+        INSERT INTO enroll VALUES(DEFAULT, #{cno }, #{id }, DEFAULT, #{book }, #{enroll_price },#{book_name }, DEFAULT, #{enroll_cash })
     </insert>
     <!-- 등록할 때 강의 테이블의 현재 신청 인원 +1 추가-->
     <update id="updateStudentNum">
@@ -98,7 +123,7 @@
     </select>
     <select id="enrollList" resultType="kr.ed.haebeop.domain.Enroll">
         <![CDATA[
-        SELECT e.eno, e.cno, c.course_name, u.name,e.id, e.complete, e.book, e.enroll_price, e.cancel
+        SELECT e.eno, e.cno, c.course_name, u.name,e.id, e.complete, e.book, e.enroll_price,e.enroll_cash, e.cancel
         FROM enroll e INNER JOIN course c ON e.cno = c.cno INNER JOIN user u ON e.id = u.id
         ]]>
         <where>
@@ -119,7 +144,7 @@
     </select>
     <select id="cancelList" resultType="kr.ed.haebeop.domain.Enroll">
         <![CDATA[
-        SELECT e.eno, e.cno, c.course_name, u.name,e.id, e.complete, e.book, e.enroll_price, e.cancel, u.pt
+        SELECT e.eno, e.cno, c.course_name, u.name,e.id, e.complete, e.book, e.enroll_price,e.enroll_cash, e.cancel, u.pt
         FROM enroll e INNER JOIN course c ON e.cno = c.cno INNER JOIN user u ON e.id = u.id where e.cancel=1
         ]]>
         <where>

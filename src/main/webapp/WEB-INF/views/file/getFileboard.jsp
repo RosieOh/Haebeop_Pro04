@@ -14,42 +14,22 @@
     <jsp:include page="../include/head.jsp" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <c:set var="path" value="<%=request.getContextPath() %>" />
-    <%--  <%@ include file="../common.jsp"%>--%>
 </head>
 
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
-
-    /*
-    *{
-        font-family: 'Nanum Gothic Coding', monospace;
-    } */
-
-    .h2{
-        font-family: 'Nanum Gothic Coding', monospace;
-        font-weight: 400;
-        line-height: 110px;
-        text-align: center;
-        font-size: 1.75em;
-        margin-bottom: 0.5714em;
+    .single-blog-item {
+        min-height: 35vh;
     }
 
-    .content h2 {
-        line-height: 120px;
-        font-size: 1.75em;
-        margin-bottom: 0.5714em;
+    .blog-item-content hr {
+        margin-top: 0;
     }
 
-    .button {
-        text-decoration: none;
-        border-radius: 20px;
-        margin: 15px;
-        padding: 10px;
-        float: right;
-        background-color: #008CD6;
-        border-color: #008CD6;
-        color: #ffffff;
+    .blog-item-content p {
+        color: black;
+        font-size: 1.25rem;
     }
 
     .button2 {
@@ -126,20 +106,25 @@
                 <div class="button" style="float: right; ">
                     <a href="${path1 }/file/list.do" class="button">목록으로</a>
                 </div>
+            </div>
 
-
-                <c:if test= "${sid.equals('admin')}">
-                    <div class="button-group">
-                            <%--            <a class="button" href="${path1 }/notice/list.do">목록으로</a>--%>
-                                <a href="${path1}/file/removeFileboard.do?postNo=${fileboard.fileBoard.postNo}" class="button3">자료 삭제</a>
-                                <a href="${path1}/file/modifyFileboard.do?postNo=${fileboard.fileBoard.postNo}" class="button2">자료 수정</a>
-                    </div>
-                </c:if>
-
+            <div class="btns has-text-centered">
+                <c:choose>
+                    <c:when test="${sid.equals('admin')}">
+                        <a class="button mx-1" style="background-color: #2B3A55; color: #fff;" href="${path1 }/file/list.do">목록</a>
+                            <a class="button is-info mx-1" href="${path1}/file/modifyFileboard.do?postNo=${fileboard.fileBoard.postNo}">수정</a>
+                        <a class="button is-danger mx-1" href="${path1}/file/removeFileboard.do?postNo=${fileboard.fileBoard.postNo}">삭제</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="button mx-1" style="background-color: #2B3A55; color: #fff;" href="${path1 }/file/list.do">목록</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
