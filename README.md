@@ -1,4 +1,35 @@
-# team24!
+<p align="center">
+    <img src="public/logo.png" width="250"/>
+</p>
+
+# Team24_Fourth Project
+
+천재교육 풀스택 Java 과정 2기 4차 프로젝트입니다.  
+<주제: 해법강의 시범강의 웹 서비스 구현>  
+
+<strong>SmartHabeop</strong>은 학생과 학부모가 시범강의를 통해 결제 후 수강 할 수 있는 웹서비스 입니다.  
+
+<br>
+
+## 주요 기능
+
+<br>
+
+## 사용 기술
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
+<img src="https://img.shields.io/badge/Axios-E01B22?style=flat-square"/> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Vercel&logoColor=white"/>
+
+<br>
+
+## 참여 인원
+
+| 김가희 | 신수민 | 김상아 |
+| --- | --- | --- |
+| <img src="https://avatars.githubusercontent.com/u/62260343?s=400&u=eec2575d4f39693e965fce99108ea4ffaae51bac&v=4" width="100"> |  |  |
+| [@soprue](https://github.com/soprue) | [@Shinmilli](https://github.com/Shinmilli) | [@saaaaaaaaaanga](https://github.com/saaaaaaaaaanga) |
+| 메인 페이지<br>로그인 페이지<br>회원가입 페이지<br>질병 퀴즈 페이지 | 컴퓨터 교육 페이지<br>스마트폰 교육 페이지 | 소개 페이지<br>마이 페이지 |
+
 ![heabeop](./sanchul/1.png)
 ![heabeop](./sanchul/4.png)
 ![heabeop](./sanchul/5.png)
