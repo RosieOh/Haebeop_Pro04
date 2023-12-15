@@ -1,7 +1,3 @@
-<p align="center">
-    <img src="public/logo.png" width="250"/>
-</p>
-
 # Team24_Fourth Project
 
 천재교육 풀스택 Java 과정 2기 4차 프로젝트입니다.  
@@ -11,17 +7,6 @@
 
 <br>
 
-## 주요 기능
-
-
-<br>
-
-## 사용 기술
-
-<img src="https://img.shields.io/badge/Spring-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
-<img src="https://img.shields.io/badge/Axios-E01B22?style=flat-square"/> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Vercel&logoColor=white"/>
-
-<br>
 
 ![heabeop](./sanchul/1.png)
 ![heabeop](./sanchul/4.png)
