@@ -23,14 +23,6 @@
 
 <br>
 
-## 참여 인원
-
-| 김가희 | 신수민 | 김상아 |
-| --- | --- | --- |
-| <img src="https://avatars.githubusercontent.com/u/62260343?s=400&u=eec2575d4f39693e965fce99108ea4ffaae51bac&v=4" width="100"> |  |  |
-| [@soprue](https://github.com/soprue) | [@Shinmilli](https://github.com/Shinmilli) | [@saaaaaaaaaanga](https://github.com/saaaaaaaaaanga) |
-| 메인 페이지<br>로그인 페이지<br>회원가입 페이지<br>질병 퀴즈 페이지 | 컴퓨터 교육 페이지<br>스마트폰 교육 페이지 | 소개 페이지<br>마이 페이지 |
-
 ![heabeop](./sanchul/1.png)
 ![heabeop](./sanchul/4.png)
 ![heabeop](./sanchul/5.png)
